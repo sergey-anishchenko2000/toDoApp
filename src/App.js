@@ -1,4 +1,4 @@
-import {useState, setState} from 'react';
+import {useState} from 'react';
 import darkIcon from "./images/icon-moon.svg";
 import lightIcon from "./images/icon-sun.svg";
 import RLDD from 'react-list-drag-and-drop/lib/RLDD';
@@ -36,9 +36,9 @@ const App = () => {
   };
 
   const handleKeydown = (event) => {
-    if (event.keyCode==13) {
+    if (event.keyCode === 13) {
       let maxid = 0;
-      toDoItems.map((item)=>{
+      toDoItems.forEach((item)=>{
         maxid = maxid>item.id ? maxid:item.id
       })
       
@@ -52,7 +52,7 @@ const App = () => {
   const deleteItem = (id) => setToDoItems(toDoItems.filter((item) => item.id !== id));
   
   const toggleStatus = (id) => {
-    toDoItems.filter(item=>item.id==id).map(item=>item.isCompleted=!item.isCompleted)
+    toDoItems.filter(item=>item.id === id).map(item=>item.isCompleted=!item.isCompleted)
     setToDoItems([...toDoItems]);
     setTodoTitle('');
   }
@@ -71,6 +71,7 @@ const App = () => {
             {item.isCompleted &&
               <img
                 src={`./images/icon-check.svg`}
+                alt=''
               />
             }
           </div>
@@ -84,6 +85,7 @@ const App = () => {
         >
           <img
             src={`./images/icon-cross.svg`}
+            alt=''
           />
         </div>
       </div>
@@ -109,6 +111,7 @@ const App = () => {
                 <img 
                   className="toggle-theme" 
                   src={theme === 'light'? lightIcon : darkIcon} 
+                  alt=''
                   onClick={toggleTheme}
                 />
             </div>
